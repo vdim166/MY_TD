@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <div class="modal" id="initial-modal">
+      <div class="start-container">
+        <button id="start-game-button">Start</button>
+      </div>
+    </div>
+    <div id="health-hub">HP:<span id="hp">100</span>%</div>
+    <div id="game-hub">
+      <p>Buy</p>
+
+      <div class="buy-container">
+        <button id="buy-tower">Tower</button>
+      </div>
+    </div>
+
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script src="./src/HpController.js"></script>
+    <script src="./src/initialModal.js"></script>
+    <script src="./src/GameEngine.js"></script>
+    <script src="./src/game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+canvas {
+  display: block;
+}
+
+#health-hub {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#game-hub {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.buy-container {
+  display: flex;
+  gap: 15px;
+}
+
+#buy-tower {
+  border: 1px solid black;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+#buy-tower:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#buy-tower:active {
+  transform: scale(1.1);
+  background-color: rgb(177, 95, 95);
+  color: white;
+}
+#buy-tower.selected {
+  background-color: rgb(177, 95, 95);
+  color: white;
+}
+
+.modal {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.start-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#start-game-button {
+  padding: 6px 25px;
+  background-color: white;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+#start-game-button:hover {
+  background-color: rgb(230, 230, 230);
+  cursor: pointer;
+}
