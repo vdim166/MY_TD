@@ -32,6 +32,16 @@ function drawEmptyCircle(ctx, x, y, radius, color = "black", lineWidth = 1) {
   ctx.stroke(); // Draw the outline
 }
 
+function isPointInCircle(origin, radius, target) {
+  // Calculate squared distance (avoid square root for performance)
+  const dx = target.x - origin.x;
+  const dy = target.y - origin.y;
+  const distanceSquared = dx * dx + dy * dy;
+
+  // Compare squared distance to squared radius
+  return distanceSquared <= radius * radius;
+}
+
 function isBeyondLine(line, position) {
   const { p1, p2 } = line;
 
@@ -240,7 +250,7 @@ class GameEngine {
   drawEnemies(enemies) {
     for (const enemy of enemies) {
       if (enemy.isDead) continue;
-      this.ctx.fillStyle = "red";
+      this.ctx.fillStyle = enemy.color;
       this.ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
   }

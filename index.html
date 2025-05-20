@@ -12,16 +12,27 @@
         <button id="start-game-button">Start</button>
       </div>
     </div>
+
+    <div class="modal" id="end-modal">
+      <div class="start-container">
+        <p>Game Over</p>
+        <button id="start-game-button" onclick="startAgain()">
+          Start again
+        </button>
+      </div>
+    </div>
     <div id="health-hub">HP:<span id="hp">100</span>%</div>
     <div id="game-hub">
-      <p>Buy</p>
+      <div>Buy: <span id="money"></span>$</div>
 
       <div class="buy-container">
         <button id="buy-tower">Tower</button>
       </div>
     </div>
+    <div id="timer"></div>
 
     <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script src="./src/MoneyController.js"></script>
     <script src="./src/HpController.js"></script>
     <script src="./src/initialModal.js"></script>
     <script src="./src/GameEngine.js"></script>
