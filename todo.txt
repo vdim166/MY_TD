@@ -5,3 +5,8 @@ animation for attack (laser)
 lose
 win
 animation for attack (fireball)
+
+single player
+battle with bot
+
+ai powered
