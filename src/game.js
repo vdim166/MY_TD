@@ -81,69 +81,42 @@ const currentPath = [
 
 let enemies = [];
 
-let enemiesStack = [
+let enemiesStack = null;
+const queues = [
   {
-    x: -30,
-    y: 250,
-    width: 25,
-    height: 25,
-    color: "yellow",
-    whenUpdate: Date.now() + 5000,
-    pathIndex: 0,
-    isDead: false,
-    damage: 15,
-    speed: 500,
-    velocity: 40,
-    health: 100,
-  },
-  {
-    x: -30,
-    y: 250,
-    width: 25,
-    height: 25,
-    color: "red",
-    whenUpdate: Date.now() + 5000,
-    pathIndex: 0,
-    isDead: false,
-    damage: 15,
-    speed: 500,
-    velocity: 40,
-    health: 100,
-  },
-];
-
-const queue = [
-  {
-    name: "wait",
-    action: async () => {
-      await new Promise((res) => setTimeout(res, 3000));
-    },
-  },
-  {
-    name: "add enemy",
-    action: () => {
-      const enemy = enemiesStack[0];
-      enemies.push(enemy);
-      enemiesStack.splice(0, 1);
-    },
-  },
-  {
-    name: "wait",
-    action: async () => {
-      await new Promise((res) => setTimeout(res, 5000));
-    },
-  },
-  {
-    name: "add enemy",
-    action: () => {
-      const enemy = enemiesStack[0];
-      enemies.push(enemy);
-      enemiesStack.splice(0, 1);
-    },
+    name: "1",
+    queue: [
+      {
+        name: "wait",
+        action: async () => {
+          await new Promise((res) => setTimeout(res, 3000));
+        },
+      },
+      {
+        name: "add enemy",
+        action: () => {
+          const enemy = enemiesStack[0];
+          enemies.push(enemy);
+          enemiesStack.splice(0, 1);
+        },
+      },
+      {
+        name: "wait",
+        action: async () => {
+          await new Promise((res) => setTimeout(res, 5000));
+        },
+      },
+      {
+        name: "add enemy",
+        action: () => {
+          const enemy = enemiesStack[0];
+          enemies.push(enemy);
+          enemiesStack.splice(0, 1);
+        },
+      },
+    ],
   },
 ];
-
-const allEnemiesInLevel = queue.filter((a) => a.name === "add enemy").length;
 
 function gameLoop(timestamp) {
   if (stopGame) return;
@@ -154,8 +127,29 @@ function gameLoop(timestamp) {
   animationFrameId = requestAnimationFrame(gameLoop);
 }
 
-const endGame = () => {
+const winHandle = () => {
   console.log("game is over");
+  winModal.style.display = "block";
+
+  stopGameLoop();
+};
+
+const companyEndHandle = () => {};
+
+const nextLevel = () => {
+  winModal.style.display = "none";
+
+  const index = levels.findIndex((l) => l.name === currentLevel);
+  if (index < levels.length - 1) {
+    currentLevel = levels[index + 1].name;
+    runGame();
+  } else {
+    companyEndHandle();
+  }
+};
+
+const loseHandle = () => {
+  console.log("You lose");
   endModal.style.display = "block";
 
   stopGameLoop();
@@ -163,6 +157,12 @@ const endGame = () => {
 
 function updateGame() {
   let enemiesDead = 0;
+
+  const queue = queues.find((q) => q.name === currentLevel).queue;
+
+  if (!queue) return;
+
+  const allEnemiesInLevel = queue.filter((a) => a.name === "add enemy").length;
 
   for (let i = 0; i < enemies.length; ++i) {
     const enemy = enemies[i];
@@ -209,9 +209,9 @@ function updateGame() {
 
         if (currentPath.length - 1 === enemy.pathIndex) {
           // should do damage
-          console.log("damage");
+          console.log("damage", enemy);
 
-          hpBarHtml.innerHTML = hpController.attack(15);
+          hpBarHtml.innerHTML = hpController.attack(enemy.damage);
 
           enemy.isDead = true;
         }
@@ -225,8 +225,13 @@ function updateGame() {
     // towers
   }
 
+  if (hpController.isDead()) {
+    loseHandle();
+    return;
+  }
+
   if (enemiesDead === allEnemiesInLevel) {
-    endGame();
+    winHandle();
     return;
   }
 

@@ -1,6 +1,7 @@
 body {
   margin: 0;
   overflow: hidden;
+  user-select: none;
 }
 canvas {
   display: block;
@@ -69,18 +70,23 @@ canvas {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
 }
 
-#start-game-button {
+.start-container button {
   padding: 6px 25px;
   background-color: white;
   font-size: 20px;
   border-radius: 10px;
 }
 
-#start-game-button:hover {
+.start-container button:hover {
   background-color: rgb(230, 230, 230);
   cursor: pointer;
+}
+
+.start-container button:active {
+  background-color: rgb(187, 181, 181);
 }
 
 #end-modal {
@@ -96,4 +102,35 @@ canvas {
   transform: translateX(-50%);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.levels-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.level-display {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 28px;
+  width: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.level-display:hover {
+  cursor: pointer;
+  background-color: rgb(199, 206, 212);
+}
+
+.level-display:active {
+  background-color: rgb(151, 155, 158);
+}
+
+#win-modal {
+  display: none;
 }

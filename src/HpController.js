@@ -16,4 +16,8 @@ class HpController {
 
     return this.hp;
   }
+
+  isDead() {
+    return this.hp <= 0;
+  }
 }

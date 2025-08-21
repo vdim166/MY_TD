@@ -9,7 +9,10 @@
   <body>
     <div class="modal" id="initial-modal">
       <div class="start-container">
-        <button id="start-game-button">Start</button>
+        <h1>Start game</h1>
+        <button id="start-game-button">Single player</button>
+        <button>Battle with bot</button>
+        <button>AI powered</button>
       </div>
     </div>
 
@@ -19,6 +22,13 @@
         <button id="start-game-button" onclick="startAgain()">
           Start again
         </button>
+      </div>
+    </div>
+
+    <div class="modal" id="win-modal">
+      <div class="start-container">
+        <p>You win</p>
+        <button id="start-game-button" onclick="nextLevel()">Next level</button>
       </div>
     </div>
     <div id="health-hub">HP:<span id="hp">100</span>%</div>

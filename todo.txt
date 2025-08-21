@@ -2,11 +2,13 @@ timer for start +
 tower attack +
 money + 
 animation for attack (laser)
-lose
-win
+lose +
+win +
 animation for attack (fireball)
+
+support of different routes at the same map
+animation for road appearing
 
 single player
 battle with bot
-
 ai powered
