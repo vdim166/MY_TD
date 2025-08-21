@@ -31,17 +31,19 @@
         <button id="start-game-button" onclick="nextLevel()">Next level</button>
       </div>
     </div>
-    <div id="health-hub">HP:<span id="hp">100</span>%</div>
-    <div id="game-hub">
-      <div>Buy: <span id="money"></span>$</div>
+    <div id="game-instance">
+      <div id="health-hub">HP:<span id="hp">100</span>%</div>
+      <div id="game-hub">
+        <div>Buy: <span id="money"></span>$</div>
 
-      <div class="buy-container">
-        <button id="buy-tower">Tower</button>
+        <div class="buy-container">
+          <button id="buy-tower">Tower</button>
+        </div>
       </div>
+      <div id="timer"></div>
+      <canvas id="gameCanvas" width="800" height="600"></canvas>
     </div>
-    <div id="timer"></div>
 
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
     <script src="./src/MoneyController.js"></script>
     <script src="./src/HpController.js"></script>
     <script src="./src/initialModal.js"></script>

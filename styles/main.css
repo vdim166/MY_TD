@@ -134,3 +134,17 @@ canvas {
 #win-modal {
   display: none;
 }
+
+#game-instance {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+}
+
+.company-end-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}

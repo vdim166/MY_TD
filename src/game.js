@@ -132,20 +132,36 @@ const winHandle = () => {
   winModal.style.display = "block";
 
   stopGameLoop();
+
+  const index = levels.findIndex((l) => l.name === currentLevel);
+
+  const isLast = index === levels.length - 1;
+
+  if (isLast) {
+    companyEndHandle();
+  } else {
+    nextLevel();
+  }
 };
 
-const companyEndHandle = () => {};
+let companyEndModal = null;
+
+const companyEndHandle = () => {
+  companyEndModal = document.createElement("div");
+  companyEndModal.classList.add("modal", "company-end-modal");
+
+  companyEndModal.innerHTML = `
+  <h1>Congratulations!</h1>
+  <button onclick="goToMainMenu()">Go back</button>
+  `;
+  document.body.appendChild(companyEndModal);
+};
 
 const nextLevel = () => {
   winModal.style.display = "none";
 
-  const index = levels.findIndex((l) => l.name === currentLevel);
-  if (index < levels.length - 1) {
-    currentLevel = levels[index + 1].name;
-    runGame();
-  } else {
-    companyEndHandle();
-  }
+  currentLevel = levels[index + 1].name;
+  runGame();
 };
 
 const loseHandle = () => {
@@ -282,3 +298,11 @@ function renderGame() {
   gameEngine.drawCastle(castle);
   gameEngine.drawEnemies(enemies);
 }
+
+const goToMainMenu = () => {
+  document.body.removeChild(companyEndModal);
+  companyEndModal = null;
+  gameInstanceHtml.style.display = "none";
+  initialModal.style.display = "block";
+  winModal.style.display = "none";
+};

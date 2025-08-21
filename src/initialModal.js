@@ -1,5 +1,6 @@
 const startGameButton = document.querySelector("#start-game-button");
 const initialModal = document.querySelector("#initial-modal");
+const gameInstanceHtml = document.querySelector("#game-instance");
 
 const endModal = document.querySelector("#end-modal");
 const winModal = document.querySelector("#win-modal");
@@ -61,7 +62,10 @@ const loadCurrentEnemyStacks = async () => {
 
 const runGame = async () => {
   enemiesStack = await loadCurrentEnemyStacks();
+
   stopGame = false;
+
+  gameInstanceHtml.style.display = "block";
 
   animationFrameId = requestAnimationFrame(gameLoop);
   await startTimer();

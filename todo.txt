@@ -6,6 +6,8 @@ lose +
 win +
 animation for attack (fireball)
 
+need to go to react
+
 support of different routes at the same map
 animation for road appearing
 
